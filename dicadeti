@@ -1,0 +1,31 @@
+# trazendo a biblioteca capaz de realizar requisições
+import requests 
+import random
+
+# uma variável camada url que armazena o endereço com as info que desejo buscar 
+url ='https://raw.githubusercontent.com/guilhermeonrails/api-imersao-ia/main/words.json'
+# faço a requisição e armazeno em uma variável chamada resposta
+resposta = requests.get(url)
+# transforma a resposta em um JSON
+data = resposta.json()
+# exibindo as informações com o comando print(lembrem-se do Hello World)
+print(data)
+len(data)
+# criação da variável chamada valor_secreto que armazena uma tecnologia aleatória da lista
+valor_secreto = random.choice(data)
+# variável para armazenar apenas a palavra
+palavra_secreta = valor_secreto['palavra']
+# variável para armazenar apenas a dica
+dica = valor_secreto['dica']
+
+# mostrar na tela quantas letras a palavra secreta possue e a sua dica
+# o f é capaz de juntar palavras e variáveis
+# print(f'A palavra secreta tem {len(palavra_secreta)} letras -> {dica}')
+# receber o chute ou palpite da tecnologia
+print(f'A palavra secreta tem {len(palavra_secreta)} letras')
+print(f'A dica é -> {dica}')
+chute = input('O que você acha que é? ')
+if chute == palavra_secreta:
+  print('Parabéns! Você acertou!')
+else:
+  print(f'Não acertou! A palavra secreta era {palavra_secreta}!')
